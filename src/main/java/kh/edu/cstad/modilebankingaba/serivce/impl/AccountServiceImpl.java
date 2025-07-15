@@ -3,18 +3,21 @@ package kh.edu.cstad.modilebankingaba.serivce.impl;
 import jakarta.transaction.Transactional;
 import kh.edu.cstad.modilebankingaba.domain.Account;
 import kh.edu.cstad.modilebankingaba.domain.Customer;
+import kh.edu.cstad.modilebankingaba.domain.CustomerSegment;
 import kh.edu.cstad.modilebankingaba.dto.CreateAccountRequest;
 import kh.edu.cstad.modilebankingaba.dto.ResponseAccount;
 import kh.edu.cstad.modilebankingaba.dto.UpdateAccount;
 import kh.edu.cstad.modilebankingaba.mapper.AccountMapper;
 import kh.edu.cstad.modilebankingaba.repository.AccountRepository;
 import kh.edu.cstad.modilebankingaba.repository.CustomerRepository;
+import kh.edu.cstad.modilebankingaba.repository.CustomerSegmentRepository;
 import kh.edu.cstad.modilebankingaba.serivce.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -24,7 +27,7 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final CustomerRepository customerRepository;
     private final AccountMapper accountMapper;
-
+    private final CustomerSegmentRepository customerSegmentRepository;
 
     @Override
     public ResponseAccount getAccountByActNo(String actNo) {
@@ -44,11 +47,22 @@ public class AccountServiceImpl implements AccountService {
         Customer customer = customerRepository.findById(createAccountRequest.customerId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found"));
 
+
         Account account = accountMapper.fromCreateRequest(createAccountRequest);
         account.setCustomer(customer);
         account.setIsDeleted(false);
 
-        return accountMapper.toResponse(accountRepository.save(account));
+
+        String segmentName = customer.getCustomerSegment().getSegmentName();
+        switch (segmentName.toLowerCase()) {
+            case "gold" -> account.setOverLimit(BigDecimal.valueOf(50000));
+            case "silver" -> account.setOverLimit(BigDecimal.valueOf(10000));
+            default -> account.setOverLimit(BigDecimal.valueOf(5000));
+        }
+
+        account = accountRepository.save(account);
+
+        return accountMapper.toResponse(account);
     }
 
     @Override

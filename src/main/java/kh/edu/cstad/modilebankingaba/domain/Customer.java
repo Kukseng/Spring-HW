@@ -12,23 +12,31 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
-
-@Table(name ="customers")
+@Table(name = "customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(unique=true, length = 150)
+    @Column(unique = true, length = 150)
     private String userName;
-    @Column(unique=true, length = 15)
+    @Column(unique = true, length = 15)
     private String phoneNumber;
-    @Column( length = 10)
+    @Column(length = 10)
     private String gender;
-    @Column(unique=true, length = 150)
+    @Column(unique = true, length = 150)
     private String email;
-    @Column( length = 15)
+    @Column(length = 15)
     private Boolean isDeleted;
+    @Column(length = 15, unique = true)
+    private String nationalCardId;
+
+    @OneToOne(mappedBy = "customer")
+    private KYC kyc;
 
     @OneToMany(mappedBy = "customer")
     private List<Account> accounts;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "customer_segment_id")
+    private CustomerSegment customerSegment;
 }

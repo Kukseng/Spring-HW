@@ -2,7 +2,7 @@ package kh.edu.cstad.modilebankingaba.domain;
 
 
 import jakarta.persistence.*;
-        import lombok.Getter;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -13,19 +13,14 @@ import lombok.Setter;
 public class KYC {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String uuid;
-
-    @Column(unique = true, nullable = false, length = 12)
-    private String nationalCodeId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(nullable = false)
     private Boolean isVerified;
 
-    @Column(nullable = false)
-    private Boolean isDeleted;
 
-    @OneToOne()
+    @OneToOne(optional = false)
     @JoinColumn(name = "cust_id")
     private Customer customer;
 }

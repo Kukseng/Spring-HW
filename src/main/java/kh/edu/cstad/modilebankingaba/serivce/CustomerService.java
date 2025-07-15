@@ -20,6 +20,7 @@ public interface CustomerService {
     ResponseCustomer createCustomer(CreateCustomerRequest createCustomerRequest);
 
 //
+    void disableByPhoneNumber(String phoneNumber);
 
     boolean deleteByCustomerNumber(String customerNumber);
 

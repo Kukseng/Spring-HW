@@ -5,10 +5,7 @@ import kh.edu.cstad.modilebankingaba.domain.Customer;
 import kh.edu.cstad.modilebankingaba.dto.CreateCustomerRequest;
 import kh.edu.cstad.modilebankingaba.dto.ResponseCustomer;
 import kh.edu.cstad.modilebankingaba.dto.UpdateCustomer;
-import org.mapstruct.BeanMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.mapstruct.*;
 
 
 @Mapper(componentModel = "spring")
@@ -22,5 +19,6 @@ public interface CustomerMapper {
 
     ResponseCustomer mapResponseCustomer(Customer customer);
 
+    @Mapping(target = "customerSegment", ignore = true)
     Customer frmCreateCustomer(CreateCustomerRequest request);
 }

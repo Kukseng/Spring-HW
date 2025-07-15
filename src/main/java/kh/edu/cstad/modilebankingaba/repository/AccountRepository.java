@@ -15,4 +15,6 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     void deleteByActNo(String actNo);
 
     List<Account> findByCustomer(Customer customer);
+
+
 }

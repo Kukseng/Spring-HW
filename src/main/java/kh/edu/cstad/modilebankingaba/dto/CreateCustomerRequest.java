@@ -8,7 +8,8 @@ public record CreateCustomerRequest(
         String userName,
         String phoneNumber,
         String gender,
-        String email
-
+        String email,
+        String nationalCardId,
+        Integer customerSegmentId
 ) {
 }

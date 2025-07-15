@@ -21,13 +21,13 @@ public class Account {
     @Column(unique = true, nullable = false)
     private String actNo;
 
-    @Column(nullable = false)
+    @Column(length = 50)
     private BigDecimal balance;
 
-    @Column(nullable = false)
+    @Column(length = 50)
     private BigDecimal overLimit;
 
-    @Column(nullable = false)
+    @Column( length = 15)
     private Boolean isDeleted = false;
 
     @ManyToOne
