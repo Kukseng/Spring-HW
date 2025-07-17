@@ -30,13 +30,15 @@ public class Customer {
     @Column(length = 15, unique = true)
     private String nationalCardId;
 
-    @OneToOne(mappedBy = "customer")
-    private KYC kyc;
-
     @OneToMany(mappedBy = "customer")
     private List<Account> accounts;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "customer_segment_id")
     private CustomerSegment customerSegment;
+
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private KYC kyc;
+
 }

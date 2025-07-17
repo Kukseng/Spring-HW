@@ -9,10 +9,12 @@ import kh.edu.cstad.modilebankingaba.domain.Customer;
 import java.math.BigDecimal;
 
 public record ResponseAccount(
-        BigDecimal balance,
-        BigDecimal overLimit,
-        String customerName,
-        String customerPhone
+        String userName,
+        String phoneNumber,
+        String gender,
+        String email,
+        String nationalCardId
+
 ) {
 }
 //@Column(unique = true, nullable = false)

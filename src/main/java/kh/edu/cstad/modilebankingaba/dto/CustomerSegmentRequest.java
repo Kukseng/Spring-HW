@@ -1,5 +1,6 @@
 package kh.edu.cstad.modilebankingaba.dto;
 
 public record CustomerSegmentRequest(
-        String segmentName
+        String segmentName,
+        String description
 ) {}

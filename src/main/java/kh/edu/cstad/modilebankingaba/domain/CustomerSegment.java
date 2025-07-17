@@ -19,12 +19,15 @@ public class CustomerSegment {
     private Integer id;
 
 
-    @Column(unique = true, nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String segmentName;
 
     @Column(nullable = false)
     private Boolean isDeleted;
 
-    @OneToMany(mappedBy = "customerSegment")
+    @Column(length = 100)
+    private String description;
+
+    @OneToMany(mappedBy = "customerSegment", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Customer> customers;
 }

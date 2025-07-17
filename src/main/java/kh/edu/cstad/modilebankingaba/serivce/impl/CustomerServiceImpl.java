@@ -88,13 +88,13 @@ public class CustomerServiceImpl implements CustomerService {
 
         customer.setCustomerSegment(customerSegment);
         customer.setIsDeleted(false);
-        customer = customerRepository.save(customer);
+
 
         KYC kyc = new KYC();
         kyc.setCustomer(customer);
         kyc.setIsVerified(false);
-        kycRepository.save(kyc);
-
+        customer.setKyc(kyc);
+        customer = customerRepository.save(customer);
         return customerMapper.mapResponseCustomer(customer);
     }
 

@@ -25,6 +25,5 @@ public interface AccountMapper {
     Account fromCreateRequest(CreateAccountRequest request);
 
     @Mapping(source = "customer.userName", target = "customerName")
-    @Mapping(source = "customer.phoneNumber", target = "customerPhone")
     ResponseAccount toResponse(Account account);
 }
