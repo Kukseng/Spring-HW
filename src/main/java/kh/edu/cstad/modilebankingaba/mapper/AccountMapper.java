@@ -24,6 +24,6 @@ public interface AccountMapper {
     @Mapping(target = "accountType", ignore = true)
     Account fromCreateRequest(CreateAccountRequest request);
 
-    @Mapping(source = "customer.userName", target = "customerName")
+
     ResponseAccount toResponse(Account account);
 }
