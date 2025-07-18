@@ -10,20 +10,14 @@ import org.mapstruct.*;
 public interface AccountMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "actNo", ignore = true)
-    @Mapping(target = "overLimit", ignore = true)
-    @Mapping(target = "isDeleted", ignore = true)
-    @Mapping(target = "customer", ignore = true)
+
     @Mapping(target = "accountType", ignore = true)
     void toAccountPartially(UpdateAccount updateAccount, @MappingTarget Account account);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "isDeleted", constant = "false")
-    @Mapping(target = "customer", ignore = true)
+
     @Mapping(target = "accountType", ignore = true)
     Account fromCreateRequest(CreateAccountRequest request);
 
-
+    @Mapping(target = "accountType", ignore = true)
     ResponseAccount toResponse(Account account);
 }

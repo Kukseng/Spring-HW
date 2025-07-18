@@ -9,7 +9,6 @@ public record CreateAccountRequest(
         String actName,
         CurrencyUtil actCurrency,
         BigDecimal balance,
-        Integer customerId,
         String accountType,
         String phoneNumber
 ) {

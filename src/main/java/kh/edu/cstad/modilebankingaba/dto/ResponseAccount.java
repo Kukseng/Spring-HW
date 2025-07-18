@@ -5,15 +5,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import kh.edu.cstad.modilebankingaba.domain.AccountType;
 import kh.edu.cstad.modilebankingaba.domain.Customer;
+import kh.edu.cstad.modilebankingaba.util.CurrencyUtil;
 
 import java.math.BigDecimal;
 
 public record ResponseAccount(
-        String userName,
-        String phoneNumber,
-        String gender,
-        String email,
-        String nationalCardId
+        String actNo,
+        String actName,
+        String actCurrency,
+        BigDecimal balance,
+        Boolean isHide,
+        String accountType
 
 ) {
 }
