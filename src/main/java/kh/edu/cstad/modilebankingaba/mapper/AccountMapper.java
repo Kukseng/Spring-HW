@@ -18,6 +18,6 @@ public interface AccountMapper {
     @Mapping(target = "accountType", ignore = true)
     Account fromCreateRequest(CreateAccountRequest request);
 
-    @Mapping(target = "accountType", ignore = true)
+    @Mapping(source = "accountType.typeName", target = "accountType")
     ResponseAccount toResponse(Account account);
 }
