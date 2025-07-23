@@ -10,7 +10,8 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class AccountTypeInitialize {
+public class
+AccountTypeInitialize {
 
     private final AccountTypeRepository accountTypeRepository;
 
