@@ -110,6 +110,8 @@ public class KycloakSecurityConfig {
 //                .hasAnyRole("USER")
                         .requestMatchers(HttpMethod.POST,"/api/v1/customers/**")
                         .hasAnyRole("ADMIN", "STAFF")
+                        .requestMatchers("/media/**").permitAll()
+                        .requestMatchers("/media/download/**").permitAll()
                         .anyRequest().authenticated()
         );
 
